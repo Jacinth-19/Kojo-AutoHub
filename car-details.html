@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details | Kojo April AutoHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="Compact Car.png" alt="Kojo April AutoHub Logo" class="logo-img">
+                <span>Kojo April <strong>AutoHub</strong></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#inventory">Inventory</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Car Details Section -->
+    <section class="car-details-section">
+        <div class="container details-container">
+            <div class="details-grid">
+                <div class="details-image">
+                    <img id="detail-img" src="" alt="">
+                </div>
+                <div class="details-info">
+                    <h1 id="detail-title"></h1>
+                    <div class="details-meta">
+                        <span><strong>Year:</strong> <span id="detail-year"></span></span>
+                        <span><strong>Mileage:</strong> <span id="detail-mileage"></span></span>
+                        <span><strong>Condition:</strong> <span id="detail-condition"></span></span>
+                        <span><strong>Fuel:</strong> <span id="detail-fuel"></span></span>
+                        <span><strong>Transmission:</strong> <span id="detail-transmission"></span></span>
+                        <span><strong>Engine:</strong> <span id="detail-engine"></span></span>
+                        <span><strong>Color:</strong> <span id="detail-color"></span></span>
+                    </div>
+                    <p id="detail-description" class="details-description"></p>
+                    <h3>Key Features</h3>
+                    <ul id="detail-features" class="details-features"></ul>
+                    <div class="details-actions">
+                        <a id="detail-inquiry" href="#" class="btn btn-primary">Inquire About This Car</a>
+                        <a href="index.html#inventory" class="btn btn-secondary">Back to Inventory</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Kojo April AutoHub. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/kojoaprilautohub" target="_blank" rel="noopener noreferrer" aria-label="Kojo April AutoHub on Facebook">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/kojoaprilautohub" target="_blank" rel="noopener noreferrer" aria-label="@kojoaprilautohub on Instagram">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id'));
+            const car = cars.find(c => c.id === id);
+            const container = document.querySelector('.details-container');
+
+            if (!car) {
+                container.innerHTML = '<p class="section-title" style="text-align:center; margin-bottom: 2rem;">Car not found.</p><div style="text-align:center;"><a href="index.html#inventory" class="btn btn-primary">Back to Inventory</a></div>';
+                return;
+            }
+
+            document.getElementById('detail-img').src = car.image;
+            document.getElementById('detail-img').alt = car.name;
+            document.getElementById('detail-title').textContent = car.name;
+            document.getElementById('detail-year').textContent = car.year;
+            document.getElementById('detail-mileage').textContent = car.mileage;
+            document.getElementById('detail-condition').textContent = car.condition;
+            document.getElementById('detail-fuel').textContent = car.fuel;
+            document.getElementById('detail-transmission').textContent = car.transmission;
+            document.getElementById('detail-engine').textContent = car.engine;
+            document.getElementById('detail-color').textContent = car.color;
+            document.getElementById('detail-description').textContent = car.description;
+            document.getElementById('detail-features').innerHTML = car.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('detail-inquiry').href = `index.html?car=${encodeURIComponent(car.name)}#contact`;
+        });
+    </script>
+</body>
+</html>
