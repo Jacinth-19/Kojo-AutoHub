@@ -246,6 +246,19 @@ body {
     font-size: 0.9rem;
 }
 
+.car-price {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1.25rem;
+}
+
+.car-price.on-request {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
 
 
 /* About Section */
@@ -476,6 +489,19 @@ footer {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
+}
+
+.details-price {
+    color: var(--primary-color);
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 1.25rem;
+}
+
+.details-price.on-request {
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 

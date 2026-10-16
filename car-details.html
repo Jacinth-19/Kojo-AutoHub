@@ -38,6 +38,7 @@
                 </div>
                 <div class="details-info">
                     <h1 id="detail-title"></h1>
+                    <div class="details-price" id="detail-price"></div>
                     <div class="details-meta">
                         <span><strong>Year:</strong> <span id="detail-year"></span></span>
                         <span><strong>Mileage:</strong> <span id="detail-mileage"></span></span>
@@ -93,6 +94,16 @@
             document.getElementById('detail-img').src = car.image;
             document.getElementById('detail-img').alt = car.name;
             document.getElementById('detail-title').textContent = car.name;
+            const priceEl = document.getElementById('detail-price');
+            if (car.price) {
+                priceEl.textContent = `GH₵ ${car.price.toLocaleString('en-US')}`;
+                priceEl.classList.remove('on-request');
+            } else if (car.price === null) {
+                priceEl.textContent = 'Price on request';
+                priceEl.classList.add('on-request');
+            } else {
+                priceEl.style.display = 'none';
+            }
             document.getElementById('detail-year').textContent = car.year;
             document.getElementById('detail-mileage').textContent = car.mileage;
             document.getElementById('detail-condition').textContent = car.condition;
