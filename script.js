@@ -400,6 +400,20 @@ const cars = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle (light/dark) with saved preference
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-label', savedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        themeToggle.addEventListener('click', () => {
+            const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeToggle.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        });
+    }
+
     const carGrid = document.getElementById('car-grid');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const burger = document.querySelector('.burger');
