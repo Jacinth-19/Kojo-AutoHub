@@ -268,6 +268,134 @@ const cars = [
         fuel: "Petrol",
         description: "A nearly-new silver Hyundai Tucson with a bold design, premium interior, and the latest safety and connectivity features.",
         features: ["Leather Seats", "Panoramic Roof", "Wireless CarPlay", "Digital Dashboard", "Reverse Camera", "Alloy Wheels"]
+    },
+    {
+        id: 19,
+        name: "Ford F-150 Raptor",
+        category: "truck",
+        price: 800000,
+        year: "—",
+        mileage: "—",
+        image: "car19.jpg",
+        color: "White",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "An imposing white Ford F-150 Raptor pickup with aggressive off-road styling, high-output performance, and a commanding presence on any road.",
+        features: ["Alloy Wheels", "Leather Seats", "Off-Road Package", "Tow Package"]
+    },
+    {
+        id: 20,
+        name: "Geely Galaxy",
+        category: "sedan",
+        price: 600000,
+        year: "—",
+        mileage: "—",
+        image: "car20.jpg",
+        color: "Dark Grey",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A sleek and modern Geely Galaxy sedan with a futuristic full-width light bar design, premium light-grey leather interior, and cutting-edge onboard technology.",
+        features: ["Full-Width LED Light Bar", "Leather Seats", "Panoramic Display", "Alloy Wheels"]
+    },
+    {
+        id: 21,
+        name: "Changan UNI-K",
+        category: "suv",
+        price: 400000,
+        year: "—",
+        mileage: "—",
+        image: "car21.jpg",
+        color: "Black",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A bold black Changan UNI-K SUV with a striking parametric grille, premium tech-loaded cabin featuring a wide floating display, and a confident road presence.",
+        features: ["Parametric Grille Design", "Leather Seats", "Wide Floating Display", "Alloy Wheels"]
+    },
+    {
+        id: 22,
+        name: "GMC Canyon",
+        category: "truck",
+        price: 300000,
+        year: "—",
+        mileage: "—",
+        image: "car22.jpg",
+        color: "Black",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A rugged black GMC Canyon pickup with a bold chrome grille, comfortable leather interior, and the versatility to handle both work and weekend adventures.",
+        features: ["Leather Seats", "Chrome Grille", "Alloy Wheels", "Tow Package"]
+    },
+    {
+        id: 23,
+        name: "Hyundai Santa Fe Sport",
+        category: "suv",
+        price: 245000,
+        year: "—",
+        mileage: "—",
+        image: "car23.jpg",
+        color: "Blue",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A stylish blue Hyundai Santa Fe Sport SUV with a refined interior, smooth turbocharged performance, and all-wheel-drive confidence in all conditions.",
+        features: ["Leather Seats", "All-Wheel Drive", "Reverse Camera", "Alloy Wheels"]
+    },
+    {
+        id: 24,
+        name: "Honda HR-V",
+        category: "suv",
+        price: 140000,
+        year: "—",
+        mileage: "—",
+        image: "car24.jpg",
+        color: "Green",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A compact and practical green Honda HR-V SUV, perfect for city driving with a comfortable cabin, efficient performance, and versatile cargo space.",
+        features: ["Alloy Wheels", "Air Conditioning", "Bluetooth", "Reverse Camera"]
+    },
+    {
+        id: 25,
+        name: "Honda Accord",
+        category: "sedan",
+        price: null,
+        year: "—",
+        mileage: "—",
+        image: "car25.jpg",
+        color: "Grey",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A sophisticated grey Honda Accord sedan offering a comfortable ride, spacious premium interior, and dependable everyday performance.",
+        features: ["Alloy Wheels", "Leather Seats", "Air Conditioning", "Bluetooth"]
+    },
+    {
+        id: 26,
+        name: "Honda Civic",
+        category: "sedan",
+        price: null,
+        year: "—",
+        mileage: "—",
+        image: "car26.jpg",
+        color: "White",
+        condition: "Foreign Used",
+        engine: "—",
+        transmission: "Automatic",
+        fuel: "Petrol",
+        description: "A clean white Honda Civic sedan with a sporty design, reliable performance, and a well-equipped interior for comfortable daily driving.",
+        features: ["Alloy Wheels", "Sunroof", "Air Conditioning", "Bluetooth"]
     }
 ];
 
@@ -304,14 +432,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const carCard = document.createElement('div');
                 carCard.className = 'car-card';
                 carCard.setAttribute('data-id', car.id);
+                const priceHtml = car.price
+                    ? `<div class="car-price">GH&#8373; ${car.price.toLocaleString('en-US')}</div>`
+                    : (car.price === null ? '<div class="car-price on-request">Price on request</div>' : '');
+                const metaParts = [];
+                if (car.year && car.year !== '—') metaParts.push(car.year);
+                if (car.mileage && car.mileage !== '—') metaParts.push(car.mileage);
+                const metaHtml = metaParts.length
+                    ? `<div class="car-details"><span>${metaParts.join('</span><span>')}</span></div>`
+                    : '';
                 carCard.innerHTML = `
                     <img src="${car.image}" alt="${car.name}" class="car-img" loading="lazy">
                     <div class="car-info">
                         <h3>${car.name}</h3>
-                        <div class="car-details">
-                            <span>${car.year}</span>
-                            <span>${car.mileage}</span>
-                        </div>
+                        ${metaHtml}
+                        ${priceHtml}
                         <button class="btn btn-primary" style="display: block; width: 100%; text-align: center;">View Details</button>
                     </div>
                 `;
